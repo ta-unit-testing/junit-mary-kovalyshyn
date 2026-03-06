@@ -1,7 +1,8 @@
 package com.softserve.academy;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -34,182 +35,229 @@ class NumberAnalyzerTest {
 
     @Test
     void shouldCreateAnalyzerWithValidNumbers() {
-        // Arrange
         List<Integer> numbers = Arrays.asList(1, 2, 3);
-
-        // Act
         NumberAnalyzer newAnalyzer = new NumberAnalyzer(numbers);
-
-        // Assert
         assertEquals(3, newAnalyzer.size());
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має кинути виключення якщо список null")
+    @DisplayName("TODO: Реалізувати тест - має кинути виключення якщо список null")
     void shouldThrowExceptionWhenNumbersListIsNull() {
-        fail("Not implemented yet");
+        List<Integer> numbers = null;
+        assertThrows(IllegalArgumentException.class, () -> new NumberAnalyzer(numbers));
     }
 
     // ===== findMinimum() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має знайти мінімальне число в колекції")
+    @DisplayName("TODO: Реалізувати тест - має знайти мінімальне число в колекції")
     void shouldFindMinimumNumber() {
-        fail("Not implemented yet");
+        int min = analyzer.findMinimum();
+        assertEquals(5, min);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має кинути виключення для порожньої колекції")
+    @DisplayName("TODO: Реалізувати тест - має кинути виключення для порожньої колекції")
     void shouldThrowExceptionWhenFindingMinimumInEmptyCollection() {
-        fail("Not implemented yet");
+        List<Integer> emptyList = new ArrayList<>();
+        NumberAnalyzer analyzer = new NumberAnalyzer(emptyList);
+        assertThrows(IllegalStateException.class, () -> analyzer.findMinimum());
     }
 
     // ===== findMaximum() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має знайти максимальне число в колекції")
+    @DisplayName("TODO: Реалізувати тест - має знайти максимальне число в колекції")
     void shouldFindMaximumNumber() {
-        fail("Not implemented yet");
+        int max = analyzer.findMaximum();
+        assertEquals(90, max);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має кинути виключення для порожньої колекції")
+    @DisplayName("TODO: Реалізувати тест - має кинути виключення для порожньої колекції")
     void shouldThrowExceptionWhenFindingMaximumInEmptyCollection() {
-        fail("Not implemented yet");
+        List<Integer> emptyList = new ArrayList<>();
+        NumberAnalyzer analyzer = new NumberAnalyzer(emptyList);
+        assertThrows(IllegalStateException.class, () -> analyzer.findMaximum());
     }
 
     // ===== calculateAverage() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має обчислити середнє значення")
+    @DisplayName("TODO: Реалізувати тест - має обчислити середнє значення")
     void shouldCalculateAverageValue() {
-        fail("Not implemented yet");
+        double average = analyzer.calculateAverage();
+        assertEquals(45.8, average, 0.001);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має кинути виключення для порожньої колекції")
+    @DisplayName("TODO: Реалізувати тест - має кинути виключення для порожньої колекції")
     void shouldThrowExceptionWhenCalculatingAverageOfEmptyCollection() {
-        fail("Not implemented yet");
+        List<Integer> numbers = new ArrayList<>();
+        NumberAnalyzer analyzer = new NumberAnalyzer(numbers);
+        assertThrows(IllegalStateException.class, () -> analyzer.calculateAverage());
+
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має правильно обчислити середнє для однієї цифри")
+    @DisplayName("TODO: Реалізувати тест - має правильно обчислити середнє для однієї цифри")
     void shouldCalculateAverageForSingleNumber() {
-        fail("Not implemented yet");
+        NumberAnalyzer singleAnalyzer = new NumberAnalyzer(Arrays.asList(15));
+        double average = singleAnalyzer.calculateAverage();
+        assertEquals(15, average, 0.001);
     }
 
     // ===== removeEvenNumbers() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має видалити всі парні числа")
+    @DisplayName("TODO: Реалізувати тест - має видалити всі парні числа")
     void shouldRemoveAllEvenNumbers() {
-        fail("Not implemented yet");
+        analyzer.removeEvenNumbers();
+        List<Integer> numbers = analyzer.getNumbers();
+        for (Integer n : numbers) {
+            assertTrue(n % 2 != 0);
+        }
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має залишити колекцію порожньою якщо всі числа парні")
+    @DisplayName("TODO: Реалізувати тест - має залишити колекцію порожньою якщо всі числа парні")
     void shouldLeaveEmptyCollectionWhenAllNumbersAreEven() {
-        fail("Not implemented yet");
+        NumberAnalyzer evenAnalyzer = new NumberAnalyzer(Arrays.asList(20,30,40,50));
+        evenAnalyzer.removeEvenNumbers();
+        assertEquals(0, evenAnalyzer.size());
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - не має змінювати колекцію якщо всі числа непарні")
+    @DisplayName("TODO: Реалізувати тест - не має змінювати колекцію якщо всі числа непарні")
     void shouldNotChangeCollectionWhenAllNumbersAreOdd() {
-        fail("Not implemented yet");
+        NumberAnalyzer evenAnalyzer = new NumberAnalyzer(Arrays.asList(5,7,9,11));
+        evenAnalyzer.removeEvenNumbers();
+        assertEquals(4, evenAnalyzer.size());
     }
 
     // ===== contains() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має знайти число яке існує в колекції")
+    @DisplayName("TODO: Реалізувати тест - має знайти число яке існує в колекції")
     void shouldReturnTrueWhenNumberExists() {
-        fail("Not implemented yet");
+        boolean result = analyzer.contains(15);
+        assertTrue(result);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має повернути false для числа якого немає")
+    @DisplayName("TODO: Реалізувати тест - має повернути false для числа якого немає")
     void shouldReturnFalseWhenNumberDoesNotExist() {
-        fail("Not implemented yet");
+        boolean result = analyzer.contains(2);
+        assertFalse(result);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має повернути false для порожньої колекції")
+    @DisplayName("TODO: Реалізувати тест - має повернути false для порожньої колекції")
     void shouldReturnFalseForEmptyCollection() {
-        fail("Not implemented yet");
+        boolean result = (analyzer.size() == 0);
+        assertFalse(result);
     }
 
     // ===== sortAscending() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має відсортувати числа за зростанням")
+    @DisplayName("TODO: Реалізувати тест - має відсортувати числа за зростанням")
     void shouldSortNumbersInAscendingOrder() {
-        fail("Not implemented yet");
+        List<Integer> numbers = new ArrayList<>(List.of(10, 9, 8, 7, 6, 5));
+        NumberAnalyzer analyzer = new NumberAnalyzer(numbers);
+        analyzer.sortAscending();
+        List<Integer> result  = analyzer.getNumbers();
+        List<Integer> example = new ArrayList<>(List.of(5,6,7,8,9,10));
+        assertEquals(example, result);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має залишити вже відсортовану колекцію без змін")
+    @DisplayName("TODO: Реалізувати тест - має залишити вже відсортовану колекцію без змін")
     void shouldNotChangeAlreadySortedCollection() {
-        fail("Not implemented yet");
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        NumberAnalyzer analyzer = new NumberAnalyzer(new ArrayList<>(numbers));
+        analyzer.sortAscending();
+        assertEquals(numbers, analyzer.getNumbers());
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має правильно відсортувати колекцію з дублікатами")
+    @DisplayName("TODO: Реалізувати тест - має правильно відсортувати колекцію з дублікатами")
     void shouldSortCollectionWithDuplicates() {
-        fail("Not implemented yet");
+        List<Integer> numbers = Arrays.asList(2, 3, 4, 3, 1);
+        NumberAnalyzer analyzer = new NumberAnalyzer(new ArrayList<>(numbers));
+        analyzer.sortAscending();
+        List<Integer> expected = Arrays.asList(1, 2, 3, 3, 4);
+        assertEquals(expected, analyzer.getNumbers());
     }
 
     // ===== size() tests =====
 
     @Test
     void shouldReturnCorrectSize() {
-        // Arrange - дані в setUp()
-
-        // Act
         int size = analyzer.size();
-
-        // Assert
         assertEquals(20, size);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має повернути 0 для порожньої колекції")
+    @DisplayName("TODO: Реалізувати тест - має повернути 0 для порожньої колекції")
     void shouldReturnZeroForEmptyCollection() {
-        fail("Not implemented yet");
+        List<Integer> numbers = new ArrayList<>();
+        NumberAnalyzer analyzer = new NumberAnalyzer(numbers);
+        assertEquals(0, analyzer.size());
     }
 
     // ===== getNumbers() tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має повернути копію колекції (не оригінал)")
+    @DisplayName("TODO: Реалізувати тест - має повернути копію колекції (не оригінал)")
     void shouldReturnCopyOfNumbers() {
-        fail("Not implemented yet");
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3));
+        NumberAnalyzer analyzer = new NumberAnalyzer(numbers);
+        List<Integer> copy = analyzer.getNumbers();
+        assertEquals(numbers, copy);
     }
 
     // ===== Integration tests =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має виконати послідовність операцій (видалити парні, потім сортувати)")
+    @DisplayName("TODO: Реалізувати тест - має виконати послідовність операцій (видалити парні, потім сортувати)")
     void shouldRemoveEvenNumbersAndThenSort() {
-        fail("Not implemented yet");
+        List<Integer> numbers = new ArrayList<>(List.of(10, 9, 8, 7, 6, 5));
+        NumberAnalyzer analyzer = new NumberAnalyzer(numbers);
+        analyzer.removeEvenNumbers();
+        analyzer.sortAscending();
+        List<Integer> result  = analyzer.getNumbers();
+        List<Integer> example = new ArrayList<>(List.of(5,7,9));
+        assertEquals(example, result);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має правильно працювати після видалення парних чисел")
+    @DisplayName("TODO: Реалізувати тест - має правильно працювати після видалення парних чисел")
     void shouldFindMinMaxAfterRemovingEvenNumbers() {
-        fail("Not implemented yet");
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        NumberAnalyzer analyzer = new NumberAnalyzer(numbers);
+        analyzer.removeEvenNumbers();
+        int min = analyzer.findMinimum();
+        int max = analyzer.findMaximum();
+        assertEquals(1, min);
+        assertEquals(5, max);
     }
 
     // ===== Edge cases =====
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має працювати з негативними числами")
+    @DisplayName("TODO: Реалізувати тест - має працювати з негативними числами")
     void shouldHandleNegativeNumbers() {
-        fail("Not implemented yet");
+        NumberAnalyzer analyzer = new NumberAnalyzer(Arrays.asList(-7, -5, 0, 5));
+        int min = analyzer.findMinimum();
+        assertEquals(-7, min);
     }
 
     @Test
-    @Disabled("TODO: Реалізувати тест - має працювати з нулем в колекції")
+    @DisplayName("TODO: Реалізувати тест - має працювати з нулем в колекції")
     void shouldHandleZeroInCollection() {
-        fail("Not implemented yet");
+        NumberAnalyzer analyzer = new NumberAnalyzer(Arrays.asList(-7, -5, 0, 5));
+        boolean zero = analyzer.contains(0);
+        assertTrue(zero);
     }
 }

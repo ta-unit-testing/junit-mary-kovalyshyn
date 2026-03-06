@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RectangleTest {
 
+
     // AAA: Arrange-Act-Assert pattern
     // Arrange - підготовка даних
     // Act - виконання дії
@@ -100,5 +101,80 @@ class RectangleTest {
         // Assert - від'ємні значення дають від'ємні результати (валідації немає)
         assertEquals(-20.0, area, 0.001);
         assertEquals(-2.0, perimeter, 0.001);
+    }
+//    Homework 6
+
+    @Test
+    void shouldCreateAngle30Degrees() {
+        Rectangle rectangle = new Rectangle(5.0, 4.0);
+        rectangle.setAngle(30.0);
+        assertEquals(30.0, rectangle.getAngle(), 0.001);
+    }
+    @Test
+    void shouldCalculateAreaAsZeroWhenWidthIsZero() {
+        Rectangle rectangle = new Rectangle(0.0, 5.0);
+        double area = rectangle.calculateArea();
+        assertEquals(0.0, area, 0.001);
+    }
+    @Test
+    void shouldCalculateAreaAsZeroWhenHeightIsZero() {
+        Rectangle rectangle = new Rectangle(4.0, 0.0);
+        double area = rectangle.calculateArea();
+        assertEquals(0.0, area, 0.001);
+    }
+    @Test
+    void shouldCalculateAreaWithNegativeWidth() {
+        Rectangle rectangle = new Rectangle(-5.0, 4.0);
+        double area = rectangle.calculateArea();
+        assertEquals(-20.0, area, 0.001);
+    }
+    @Test
+    void shouldCalculateAreaWithNegativeHeight() {
+        Rectangle rectangle = new Rectangle(5.0, -4.0);
+        double area = rectangle.calculateArea();
+        assertEquals(-20.0, area, 0.001);
+    }
+    @Test
+    void shouldCalculatePerimeterCorrectlyWithZeroHeight() {
+        Rectangle rectangle = new Rectangle(5.0, 0.0);
+        double perimeter = rectangle.calculatePerimeter();
+        assertEquals(10.0, perimeter, 0.001);
+    }
+    @Test
+    void shouldCalculatePerimeterCorrectlyWithZeroWidth() {
+        Rectangle rectangle = new Rectangle(0.0, 5.0);
+        double perimeter = rectangle.calculatePerimeter();
+        assertEquals(10.0, perimeter, 0.001);
+    }
+    @Test
+    void shouldCalculatePerimeterWithNegativeHeight() {
+        Rectangle rectangle = new Rectangle(5.0, -4.0);
+        double perimeter = rectangle.calculatePerimeter();
+        assertEquals(2.0, perimeter, 0.001);
+    }
+    @Test
+    void shouldCalculatePerimeterWithNegativeWidth() {
+        Rectangle rectangle = new Rectangle(-5.0, 4.0);
+        double perimeter = rectangle.calculatePerimeter();
+        assertEquals(-2.0, perimeter, 0.001);
+    }
+
+    @Test
+    void shouldReturnZeroDiagonalWhenBothSidesAreZero() {
+        Rectangle rectangle = new Rectangle(0.0, 0.0);
+        double diagonal = rectangle.getDiagonal();
+        assertEquals(0.0, diagonal, 0.001);
+    }
+    @Test
+    void shouldCalculateDiagonalCorrectlyWithNegativeWidth() {
+        Rectangle rectangle = new Rectangle(-3.0, 4.0);
+        double diagonal = rectangle.getDiagonal();
+        assertEquals(5.0, diagonal, 0.001);
+    }
+    @Test
+    void shouldCalculateDiagonalCorrectlyWithNegativeHeight() {
+        Rectangle rectangle = new Rectangle(3.0, -4.0);
+        double diagonal = rectangle.getDiagonal();
+        assertEquals(5.0, diagonal, 0.001);
     }
 }
